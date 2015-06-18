@@ -23,14 +23,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceProperties {
 
-	private String name = "World";
+    private String name = "World";
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Getter method for property <tt>lastName</tt>.
+     * 
+     * @return property value of lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Setter method for property <tt>lastName</tt>.
+     * 
+     * @param lastName value to be assigned to property lastName
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    private String lastName;
 
 }

@@ -34,44 +34,49 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Description("A controller for handling requests for hello messages")
 public class SampleController {
 
-	@Autowired
-	private HelloWorldService helloWorldService;
+    @Autowired
+    private HelloWorldService helloWorldService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, String> hello() {
-		return Collections.singletonMap("message",
-				this.helloWorldService.getHelloMessage());
-	}
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, String> hello() {
+        return Collections.singletonMap("message", this.helloWorldService.getHelloMessage());
+    }
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> olleh(@Validated Message message) {
-		Map<String, Object> model = new LinkedHashMap<String, Object>();
-		model.put("message", message.getValue());
-		model.put("title", "Hello Home");
-		model.put("date", new Date());
-		return model;
-	}
+    @RequestMapping(value = "/lastName", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, String> getLastName() {
+        return Collections.singletonMap("message", this.helloWorldService.getLastName());
+    }
 
-	@RequestMapping("/foo")
-	@ResponseBody
-	public String foo() {
-		throw new IllegalArgumentException("Server error");
-	}
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> olleh(@Validated Message message) {
+        Map<String, Object> model = new LinkedHashMap<String, Object>();
+        model.put("message", message.getValue());
+        model.put("title", "Hello Home");
+        model.put("date", new Date());
+        return model;
+    }
 
-	protected static class Message {
+    @RequestMapping("/foo")
+    @ResponseBody
+    public String foo() {
+        throw new IllegalArgumentException("Server error");
+    }
 
-		@NotBlank(message = "Message value cannot be empty")
-		private String value;
+    protected static class Message {
 
-		public String getValue() {
-			return this.value;
-		}
+        @NotBlank(message = "Message value cannot be empty")
+        private String value;
 
-		public void setValue(String value) {
-			this.value = value;
-		}
-	}
+        public String getValue() {
+            return this.value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
 
 }
